@@ -1,0 +1,39 @@
+下载tar包，解压
+
+启动
+ ./bin/elasticsearch
+daemon 启动
+./bin/elasticsearch -d -p pid
+配置文件启动
+./bin/elasticsearch -Epath.conf=/path/to/my/config/
+
+elasticsearch.yml
+
+cluster.name  集群名  
+node.name    节点名  
+path.data   index数据路径  
+path.logs   日志文件路径  
+network.host   主机IP   
+http.port   端口  
+
+开启默认端口:9200
+
+ERROR: bootstrap checks failed
+
+max file descriptors [4096] for elasticsearch process likely too low, increase to at least [65536]
+max number of threads [1024] for user [lishang] likely too low, increase to at least [2048]
+
+解决：切换到root用户，编辑limits.conf 添加类似如下内容
+
+vi /etc/security/limits.conf 
+
+添加如下内容:
+
+* soft nofile 65536
+
+* hard nofile 131072
+
+* soft nproc 2048
+
+* hard nproc 4096
+

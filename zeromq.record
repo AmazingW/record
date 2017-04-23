@@ -1,0 +1,13 @@
+git clone https://github.com/zeromq/libzmq
+
+./autogen.sh 
+
+./configure 
+
+make -j 4
+
+make check
+
+sudo make install 
+
+sudo ldconfig

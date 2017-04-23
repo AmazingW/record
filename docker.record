@@ -1,0 +1,88 @@
+基础命令
+    attach    进入一个容器
+    build     从Dockerfile编译
+    commit    提交容器
+    cp       从容器内复制文件到指定的路径上
+    create    创建容器
+    diff      可以列出容器内发生变化的文件和目录
+    events    从服务器拉取个人动态，可选择时间区间
+    exec      进入容器
+    export    将指定的容器保存成 tar 归档文件， docker import 的逆操作。导出后导入（exported-imported)）的容器会丢失所有的提交历史，无法回滚
+    history    查看指定镜像的创建历史
+    images    查看镜像列表
+    import    从归档文件（支持远程文件）创建一个镜像， export 的逆操作，可为导入镜像打上标签。导出后导入（exported-imported)）的容器会丢失所有的提交历史，无法回滚
+    info      显示系统信息
+    inspect    查看容器底层信息
+    kill      结束一个正在运行的容器
+    load      从 tar 镜像归档中载入镜像， docker save 的逆操作。保存后再加载（saved-loaded）的镜像不会丢失提交历史和层，可以回滚
+    login     登录Docker HUB
+    logout    退出Docker HUB
+    logs      打印出容器的标准输出
+    port      映射NAT的端口
+    pause     暂停容器
+    ps       列出容器
+    pull      下载一个镜像
+    push      将镜像推送至远程仓库，默认为 Docker Hub
+    restart    重启容器
+    rm       删除容器
+    rmi      删除镜像
+    run      运行一个新容器
+    save      保存镜像
+    search    搜索镜像
+    start     启动容器
+    stop      停止容器
+    tag      镜像改名
+    top      查看容器进程
+    unpause    恢复暂停的容器
+    version    查看版本
+    wait      阻塞对指定容器的其它调用方法，直到容器停止后退出阻塞
+
+下面是docker run的命令及含义
+
+        -i    #允许在容器进行交互
+        -t    #分配伪tty终端
+        -d    #在后台运行容器
+        -P    #标示通知Docker所需的网络端口映射从主机映射到我们的容器内
+        -h    #指定容器的hostname
+        -e    #设置容器的环境变量
+        -a    #stdin 指定标准输入输出内容类型，可选 STDIN/STDOUT / STDERR 三项
+        -w    #指定工作目录
+        -u    #指定用户名id
+        -m    #指定内存
+  
+  
+        --env-file=[]              从指定文件读入环境变量
+        --restart=always        当容器推出时，自动重启容器
+        --restart=on-failure:5    当容器推出代码为非0时，docker会尝试自动重启该容器，最多重启5次
+        --name                     指定容器名，容器名在整个docker环境中必须唯一
+        --dns                      指定dns
+        --cpuset=""                绑定容器到指定CPU运行
+        --net="bridge"             指定容器运行的网络模式
+
+数据传输
+1、docker cp 容器id:容器路径 本地路径
+
+2、启动容器的时候使用-v参数来映射目录，那么就很方便的实现了数据传输
+
+安装docker
+sudo yum install docker
+
+配置配置文件
+sudo vi /etc/sysconfig/docker
+
+设置开机启动
+service docker start
+chkconfig docker on
+
+// 139.198.2.55
+配置docker的配置环境
+daemon --insecure-registry=192.168.1.104:5000 --registry-mirror=https://e5dilgzv.mirror.aliyuncs.com
+
+#reload docker 
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+
+
+docker pull 等操作的运行需要在在sudo情况下运行，否则会报错
+Cannot connect to the Docker daemon. Is the docker daemon running on this host?
+
