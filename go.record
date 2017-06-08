@@ -1,0 +1,5 @@
+export GOROOT=/home/wqf/Documents/Dev/golang/go
+export GOWORKPATH=/home/wqf/Documents/Dev/golang/workspace
+export GOPATH=$GOWORKPATH
+export GOBIN="$GOROOT/bin:$GOWORKPATH/bin"
+export PATH="$PATH:$GOBIN"

@@ -19,3 +19,61 @@
 
 
 sslocol -c shadowsocks.json 
+
+安装polipo
+git clone https://github.com/jech/polipo.git
+cd polipo
+
+yum insatall -y  texinfo
+make all
+make install
+
+polipo -c config
+//config 
+socksParentProxy = "127.0.0.1:1080"
+socksProxyType = socks5
+logFile = /var/log/polipo
+logLevel = 99
+logSyslog = true
+
+//polipo listen 8123 port
+ss -lntup|grep polipo
+
+vi ~/.bashrc
+
+
+
+export http_proxy="http://127.0.0.1:8123"  
+export https_proxy="http://127.0.0.1:8123" 
+
+
+source ~/.bashrc
+
+curl www.google.com
+
+
+
+
+2.
+
+git clone https://github.com/rofl0r/proxychains-ng
+cd proxychains-ng
+./configure
+make 
+# make install　
+
+//config file
+
+# make install-config
+
+# vi /usr/local/etc/proxychains.conf
+
+
+#socks4 127.0.0.1 9050 #==> 原始配置
+socks5 127.0.0.1 1080
+
+
+
+
+
+
